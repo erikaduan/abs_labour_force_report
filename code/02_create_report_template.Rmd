@@ -15,10 +15,7 @@ pacman::p_load(here,
                gt)  
 
 # Load labour_force_clean dataset ----------------------------------------------
-labour_force <- read_csv(here("tutorials",
-                              "p-automating_rmd_reports",
-                              "abs_labour_force_report",
-                              "data",
+labour_force <- read_csv(here("data",
                               "clean_data",
                               "labour_force_clean.csv"))
 ```

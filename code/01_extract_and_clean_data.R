@@ -14,10 +14,7 @@ labour_force <- readSDMX(data_url) %>%
   as_tibble() 
 
 # Save raw data ----------------------------------------------------------------
-write_csv(labour_force, here("tutorials",
-                             "p-automating_rmd_reports",
-                             "abs_labour_force_report",
-                             "data",
+write_csv(labour_force, here("data",
                              "raw_data",
                              "labour_force_raw.csv"))
 
@@ -49,9 +46,6 @@ labour_force <- labour_force %>%
   ungroup()
 
 # Save clean data --------------------------------------------------------------
-write_csv(labour_force, here("tutorials",
-                             "p-automating_rmd_reports",
-                             "abs_labour_force_report",
-                             "data",
+write_csv(labour_force, here("data",
                              "clean_data",
                              "labour_force_clean.csv"))
