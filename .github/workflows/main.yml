@@ -23,6 +23,10 @@ jobs:
     steps:
       # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      # Sets up pandoc which is required for knitting HTML reports  
+      - uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '2.17.1' 
 
       # Set up R environment and install renv packages  
       - name: setup-r
