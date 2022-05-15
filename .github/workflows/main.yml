@@ -1,0 +1,57 @@
+name: ABS_labour_force_report
+on:
+  # Workflow scheduled to run at 00:00 UTC on the 1st of every month.
+  schedule:
+    - cron:  "0 0 1 * *"
+
+  # Workflow can also be run manually from the Actions tab
+  workflow_dispatch:
+
+# Construct a job to load the runner, set up the R environment, run scripts and git commit
+jobs:
+  run_report:
+    runs-on: ubuntu-latest
+    
+    # Retrieve secrets from GitHub
+    env:
+        apikey: ${{ secrets.APIKEY}}
+        apisecretkey: ${{ secrets.APISECRETKEY}}
+        access_token: ${{ secrets.ACCESS_TOKEN}}
+        access_token_secret: ${{ secrets.ACCESS_TOKEN_SECRET}}
+        RENV_PATHS_ROOT: ~/.local/share/renv
+
+    steps:
+      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Set up R environment and install renv packages  
+      - name: setup-r
+        uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: '4.1.2'
+      - run: R -e 'install.packages("renv")'
+      
+      # Set up packages cache for future report reloads 
+      - name: cache-packages
+        uses: actions/cache@v1
+        with:
+           path: ${{ env.RENV_PATHS_ROOT }}
+           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+           restore-keys: |-
+              ${{ runner.os }}-renv-
+      - run: sudo apt-get install -y --no-install-recommends libcurl4-openssl-dev
+      # Use renv::restore() to install C++ dependencies and packages
+      - run: R -e 'renv::restore()'
+      
+      # Execute R scripts
+      - run: Rscript code/01_extract_and_clean_data.R
+      - run: Rscript code/03_automate_reports.R  
+      
+      # Commit newly rendered reports into the repository 
+      - name: commit-new-files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --all
+          git commit -am ":package: refresh and produce new report version"
+          git push 
