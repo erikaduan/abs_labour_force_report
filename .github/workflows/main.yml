@@ -54,8 +54,8 @@ jobs:
       # Commit newly rendered reports into the repository 
       - name: commit-new-files
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git config --local user.email "erikaduan@github.com"
+          git config --local user.name "Erika Duan"
           git add --all
           git commit -am ":package: refresh and produce new report version"
           git push 
