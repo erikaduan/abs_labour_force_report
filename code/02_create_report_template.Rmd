@@ -10,7 +10,8 @@ params:
 # Load required packages -------------------------------------------------------
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(here,
-               tidyverse,
+               dplyr,
+               ggplot2,
                clock, 
                gt)  
 

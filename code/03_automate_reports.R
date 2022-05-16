@@ -1,6 +1,11 @@
 # Load required packages -------------------------------------------------------
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(here, tidyverse)  
+pacman::p_load(here,
+               clock,
+               dplyr,
+               ggplot2,
+               gt,
+               rmarkdown)  
 
 # Load clean data --------------------------------------------------------------  
 labour_force <- read_csv(here("data",

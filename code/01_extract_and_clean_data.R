@@ -4,7 +4,7 @@ pacman::p_load(here,
                janitor,
                rsdmx,
                clock,
-               tidyverse)  
+               dplyr)  
 
 # Connect to Labour Force API --------------------------------------------------
 data_url <- "https://api.data.abs.gov.au/data/ABS,LF,1.0.0/M2+M1.2+1+3.1599.20+30.AUS.M?startPeriod=2019-01&dimensionAtObservation=AllDimensions"  
