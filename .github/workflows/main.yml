@@ -29,14 +29,14 @@ jobs:
           pandoc-version: '2.17.1' 
 
       # Set up R environment and install renv packages  
-      - name: setup-r
+      - name: Setup R version 4.1.2
         uses: r-lib/actions/setup-r@v1
         with:
           r-version: '4.1.2'
       - run: R -e 'install.packages("renv")'
       
       # Set up packages cache for future report reloads 
-      - name: cache-packages
+      - name: Cache R packages
         uses: actions/cache@v1
         with:
            path: ${{ env.RENV_PATHS_ROOT }}
@@ -48,14 +48,16 @@ jobs:
       - run: R -e 'renv::restore()'
       
       # Execute R scripts
+      - name: Extract and clean ABS labour force data 
       - run: Rscript code/01_extract_and_clean_data.R
+
+      - name: Knit ABS labour force reports
       - run: Rscript code/03_automate_reports.R  
       
       # Commit newly rendered reports into the repository 
-      - name: commit-new-files
+      - name: Commit new data and reports
         run: |
           git config --local user.email "erikaduan@github.com"
           git config --local user.name "Erika Duan"
-          git add --all
           git commit -am ":package: refresh and produce new report version"
           git push 
