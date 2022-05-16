@@ -11,6 +11,7 @@ params:
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(here,
                readr,
+               stringr, 
                dplyr,
                ggplot2,
                clock, 
