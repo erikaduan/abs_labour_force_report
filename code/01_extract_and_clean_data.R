@@ -1,6 +1,7 @@
 # Load required packages -------------------------------------------------------  
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(here,
+pacman::p_load(readr, 
+               here,
                janitor,
                rsdmx,
                clock,
