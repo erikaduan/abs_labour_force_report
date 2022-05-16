@@ -49,10 +49,10 @@ jobs:
       
       # Execute R scripts
       - name: Extract and clean ABS labour force data 
-      - run: Rscript code/01_extract_and_clean_data.R
+        run: Rscript code/01_extract_and_clean_data.R
 
       - name: Knit ABS labour force reports
-      - run: Rscript code/03_automate_reports.R  
+        run: Rscript code/03_automate_reports.R  
       
       # Commit newly rendered reports into the repository 
       - name: Commit new data and reports
