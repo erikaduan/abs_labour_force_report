@@ -7,35 +7,35 @@ on:
   # Workflow can also be run manually from the Actions tab
   workflow_dispatch:
 
-# Construct a job to load the runner, set up the R environment, run scripts and git commit
+# Constructs a job to load the runner, set up the R environment, run scripts and git commit
 jobs:
   run_report:
     runs-on: ubuntu-latest
     
-    # Retrieve secrets from GitHub
+    # Retrieves secrets from GitHub and set renv root path
     env:
-        apikey: ${{ secrets.APIKEY}}
-        apisecretkey: ${{ secrets.APISECRETKEY}}
-        access_token: ${{ secrets.ACCESS_TOKEN}}
-        access_token_secret: ${{ secrets.ACCESS_TOKEN_SECRET}}
+        apikey: ${{ secrets.APIKEY }}
+        apisecretkey: ${{ secrets.APISECRETKEY }}
+        access_token: ${{ secrets.ACCESS_TOKEN }}
+        access_token_secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
         RENV_PATHS_ROOT: ~/.local/share/renv
 
     steps:
-      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks out your repository under $GITHUB_WORKSPACE so your job can access it
       - uses: actions/checkout@v2
+      
       # Sets up pandoc which is required for knitting HTML reports  
       - uses: r-lib/actions/setup-pandoc@v2
         with:
           pandoc-version: '2.17.1' 
 
-      # Set up R environment and install renv packages  
+      # Set up R environment 4.1.2
       - name: Setup R version 4.1.2
         uses: r-lib/actions/setup-r@v1
         with:
           r-version: '4.1.2'
-      - run: R -e 'install.packages("renv")'
       
-      # Set up packages cache for future report reloads 
+      # Set up R packages cache for workflow reruns  
       - name: Cache R packages
         uses: actions/cache@v1
         with:
@@ -43,18 +43,21 @@ jobs:
            key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
            restore-keys: |-
               ${{ runner.os }}-renv-
-      - run: sudo apt-get install -y --no-install-recommends libcurl4-openssl-dev
-      # Use renv::restore() to install C++ dependencies and packages
-      - run: R -e 'renv::restore()'
+
+      - name: Restore R packages
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+          renv::restore()
       
-      # Execute R scripts
+      # Executes R scripts
       - name: Extract and clean ABS labour force data 
         run: Rscript code/01_extract_and_clean_data.R
 
       - name: Knit ABS labour force reports
         run: Rscript code/03_automate_reports.R  
       
-      # Commit newly rendered reports into the repository 
+      # Commits newly rendered reports into the repository 
       - name: Commit new data and reports
         run: |
           git config --local user.email "erikaduan@github.com"
