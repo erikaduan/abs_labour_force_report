@@ -6,7 +6,6 @@ packages <- c("here",
               "clock",
               "dplyr",
               "ggplot2",
-              "gt",
               "rmarkdown",
               "magrittr") 
 
