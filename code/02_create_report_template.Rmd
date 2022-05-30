@@ -12,9 +12,11 @@ params:
 packages <- c("here",
               "readr",
               "stringr", 
+              "clock",
               "dplyr",
               "ggplot2",
-              "clock", 
+              "rmarkdown",
+              "knitr", 
               "magrittr") 
 
 installed_packages <- packages %in% rownames(installed.packages())

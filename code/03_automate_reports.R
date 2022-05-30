@@ -7,6 +7,7 @@ packages <- c("here",
               "dplyr",
               "ggplot2",
               "rmarkdown",
+              "knitr", 
               "magrittr") 
 
 installed_packages <- packages %in% rownames(installed.packages())
@@ -37,6 +38,6 @@ for (i in 1:nrow(params_df)) {
     params = list(sex = params_df[i, 1],
                   measure = params_df[i, 2]),
     output_file = here("output",
-                       glue::glue("{params_df[i, 1]}_{params_df[i, 2]}_report.md"))
+                       glue::glue("{params_df[i, 1]}_{params_df[i, 2]}_report.Rmd"))
   )
 }
