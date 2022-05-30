@@ -8,7 +8,8 @@ packages <- c("here",
               "ggplot2",
               "rmarkdown",
               "knitr", 
-              "magrittr") 
+              "magrittr",
+              "glue") 
 
 installed_packages <- packages %in% rownames(installed.packages())
 
@@ -35,9 +36,11 @@ for (i in 1:nrow(params_df)) {
   rmarkdown::render(
     input = here("code",
                  "02_create_report_template.Rmd"),
+    output_format = github_document(), 
     params = list(sex = params_df[i, 1],
                   measure = params_df[i, 2]),
+    output_dir = here("output"), 
     output_file = here("output",
-                       glue::glue("{params_df[i, 1]}_{params_df[i, 2]}_report.Rmd"))
+                       glue::glue("{params_df[i, 1]}_{params_df[i, 2]}_report.md"))
   )
 }

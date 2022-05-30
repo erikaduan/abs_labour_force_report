@@ -1,6 +1,8 @@
 ---
 title: "Labour force report for `r paste(params$sex, params$measure)` individuals" 
-output: github_document
+output: 
+  github_document:
+    html_preview: false
 params:
   sex: "all" 
   measure: "part-time"    
