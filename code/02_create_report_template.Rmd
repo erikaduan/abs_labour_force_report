@@ -15,8 +15,7 @@ packages <- c("here",
               "dplyr",
               "ggplot2",
               "clock", 
-              "magrittr",
-              "gt") 
+              "magrittr") 
 
 installed_packages <- packages %in% rownames(installed.packages())
 
@@ -96,24 +95,7 @@ labour_force %>%
   relocate(year, month) %>% 
   rename(number = obs_value,
          change = change_obs_value) %>%
-  gt(groupname_col = "year",
-     rowname_col = "month",) %>%
-   fmt_number(columns = c(number, change),
-              decimals = 3) %>% 
-    text_transform(locations = cells_body(columns = change, rows = change > 0),
-                   fn = function(x) paste(x, up_arrow)) %>%
-  text_transform(locations = cells_body(columns = change, rows = change < 0),
-                 fn = function(x) paste(x, down_arrow)) %>%  
-  tab_header(title = paste(params$sex,
-                           params$measure,
-                           "individuals") %>% str_to_sentence()) %>%
-  tab_footnote(footnote = "Units in 1000s",
-               cells_column_labels(columns = number)) %>%
-  opt_footnote_marks(marks = "letters") %>%
-  tab_footnote(footnote = "Units in 1000s",
-               cells_column_labels(columns = change)) %>%
-  opt_footnote_marks(marks = "letters") %>%
-   tab_options(table.font.size = "small")
+  knitr::kable()
 ```
 
 ***  
