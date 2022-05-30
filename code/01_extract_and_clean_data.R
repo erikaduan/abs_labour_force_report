@@ -16,8 +16,15 @@ if (any(installed_packages == FALSE)) {
   install.packages(packages[!installed_packages])
 }
 
-# Load new packages silently  
-invisible(lapply(packages, library, character.only = TRUE))
+# Load packages individually for detection by renv 
+library("here")
+library("readr")
+library("stringr")
+library("janitor")
+library("rsdmx")
+library("clock")
+library("dplyr")
+library("magrittr")
 
 # Connect to Labour Force API --------------------------------------------------
 data_url <- "https://api.data.abs.gov.au/data/ABS,LF,1.0.0/M2+M1.2+1+3.1599.20+30.AUS.M?startPeriod=2019-01&dimensionAtObservation=AllDimensions"  

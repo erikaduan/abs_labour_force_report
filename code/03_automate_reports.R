@@ -18,8 +18,17 @@ if (any(installed_packages == FALSE)) {
   install.packages(packages[!installed_packages])
 }
 
-# Load new packages silently  
-invisible(lapply(packages, library, character.only = TRUE))
+# Load packages individually for detection by renv 
+library("here")
+library("readr")
+library("stringr")
+library("clock")
+library("dplyr")
+library("ggplot2")
+library("rmarkdown")
+library("knitr")
+library("magrittr")
+library("glue")
 
 # Load clean data --------------------------------------------------------------  
 labour_force <- read_csv(here("data",

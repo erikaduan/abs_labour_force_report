@@ -4,15 +4,15 @@ Labour force report for male part-time individuals
 ### Graph of labour force changes since 2019
 
 This report displays the adjusted monthly change in labour force numbers
-for part-time male individuals from 2019-01 to 2022-04.
+for male part-time individuals from 2019-01 to 2022-04.
 
-![](/home/runner/work/abs_labour_force_report/abs_labour_force_report/output/male_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](C:/Users/Erika/OneDrive/Desktop/git_repos/abs_labour_force_report/output/male_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ### Table of labour force numbers and changes in the last 12 months
 
 This table displays the adjusted labour force numbers and adjusted
-change in labour force numbers for part-time male individuals for the
-last 12 months, from 2021-05 to 2022-04.
+change in labour force numbers for male part-time individuals from
+2021-05 to 2022-04.
 
 | year | month |   number |     change |
 |-----:|------:|---------:|-----------:|

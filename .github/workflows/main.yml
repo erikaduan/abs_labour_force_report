@@ -44,6 +44,10 @@ jobs:
            restore-keys: |-
               ${{ runner.os }}-renv-
 
+      # Install cURL to transfer data to virtual environment
+      - run: sudo apt-get install -y --no-install-recommends libcurl4-openssl-dev
+
+      # Install renv and project specific R packages
       - name: Restore R packages
         shell: Rscript {0}
         run: |

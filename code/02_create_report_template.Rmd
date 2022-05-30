@@ -40,7 +40,7 @@ labour_force <- read_csv(here("data",
 
 ### Graph of labour force changes since 2019  
 
-This report displays the adjusted monthly change in labour force numbers for `r paste(params$measure, params$sex)` individuals from `r min(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")` to `r max(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")`.  
+This report displays the adjusted monthly change in labour force numbers for `r paste(params$sex, params$measure)` individuals from `r min(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")` to `r max(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")`.  
 
 ```{r, echo=FALSE}
 # Plot data --------------------------------------------------------------------
@@ -76,14 +76,10 @@ labour_force %>%
 
 ### Table of labour force numbers and changes in the last 12 months  
 
-This table displays the adjusted labour force numbers and adjusted change in labour force numbers for `r paste(params$measure, params$sex)` individuals for the last 12 months, from `r Sys.Date() %>% add_months(-12) %>% str_extract("^[0-9]{4}-[0-9]{2}")` to `r max(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")`.   
+This table displays the adjusted labour force numbers and adjusted change in labour force numbers for `r paste(params$sex, params$measure)` individuals from `r Sys.Date() %>% add_months(-12) %>% str_extract("^[0-9]{4}-[0-9]{2}")` to `r max(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")`.   
 
 ```{r, echo=FALSE}
 # Display table ----------------------------------------------------------------
-# Create HTML decimal references for triangles
-up_arrow <- "<span style=\"color:steelblue\">&#9650;</span>"
-down_arrow <- "<span style=\"color:salmon\">&#9660;</span>"
-
 # Create filter to display only the last 12 months of records
 twelve_months_ago <- Sys.Date() %>% add_months(-12)
 
