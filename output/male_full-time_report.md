@@ -6,7 +6,7 @@ Labour force report for male full-time individuals
 This report displays the adjusted monthly change in labour force numbers
 for male full-time individuals from 2019-01 to 2022-04.
 
-![](C:/Users/Erika/OneDrive/Desktop/git_repos/abs_labour_force_report/output/male_full-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](/home/runner/work/abs_labour_force_report/abs_labour_force_report/output/male_full-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ### Table of labour force numbers and changes in the last 12 months
 
