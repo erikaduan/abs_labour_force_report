@@ -1,12 +1,23 @@
 # Load required packages -------------------------------------------------------  
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(here,
-               readr,
-               stringr, 
-               janitor,
-               rsdmx,
-               clock,
-               dplyr)  
+# Input package names
+packages <- c("here",
+              "readr",
+              "stringr",
+              "janitor",
+              "rsdmx",
+              "clock",
+              "dplyr",
+              "magrittr") 
+
+installed_packages <- packages %in% rownames(installed.packages())
+
+# Install new packages
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+}
+
+# Load new packages silently  
+invisible(lapply(packages, library, character.only = TRUE))
 
 # Connect to Labour Force API --------------------------------------------------
 data_url <- "https://api.data.abs.gov.au/data/ABS,LF,1.0.0/M2+M1.2+1+3.1599.20+30.AUS.M?startPeriod=2019-01&dimensionAtObservation=AllDimensions"  
