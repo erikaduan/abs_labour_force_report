@@ -1,8 +1,12 @@
 # ABS labour force report automation   
+![](https://img.shields.io/badge/Language-R-blue)
 
 This repository contains a minimal viable example of an R data visualisation and report generation workflow using ABS labour force open data.   
 
 The contents of this repository have been created to support the [Automating R Markdown report generation - Part 2](https://github.com/erikaduan/r_tips/blob/master/tutorials/p-automating_rmd_reports/p-automating_rmd_reports_part_2.md) tutorial in my [`r_tips`](https://github.com/erikaduan/r_tips) repository.   
+
+## Rmd tips  
++ Referencing [this GitHub issue](https://github.com/rstudio/rmarkdown/issues/2365), path handling by `rmarkdown::render()` is currently not ideal and the use of `output_dir` will create an absolute path for rendered figures. This can be resolved by using `xfun::from_root()` to render inside a relative file path and then using the `fs` package to move rendered outputs into `~\output`.    
 
 ## CI/CD automation tips  
 + Use `renv` to manage package version and commit your `renv.lock` file with your repository. The `renv` package will automatically create a second `.gitignore` file in `~/renv`, which prevents the private project library `~/renv/library` from being committed.  
@@ -46,8 +50,7 @@ The contents of this repository have been created to support the [Automating R M
           renv::restore()
     ```
 
-+ Write scripts that are self-contained. This means using one script to separately load all R libraries should be avoided, to minimise errors in case one job cannot access the outputs of another job.  
-+ The `pandoc` package is not bundled with the `rmarkdown` package (`pandoc` is provided by RStudio) so the correct version of `pandoc` needs to be manually specified.  
++ The `pandoc` package is not bundled with the `rmarkdown` package (`pandoc` is provided by RStudio) so the correct version of `pandoc` needs to be manually specified in the YAML pipeline.    
 
     ```
     steps:
@@ -59,6 +62,7 @@ The contents of this repository have been created to support the [Automating R M
         with:
           pandoc-version: '2.17.1' 
     ```
++ Write scripts that are self-contained. This means using one script to separately load all R libraries should be avoided, to minimise errors in case one job cannot access the outputs of another job.  
 
 + I personally prefer running scripts as separate steps, for better job progress monitoring.  
 
