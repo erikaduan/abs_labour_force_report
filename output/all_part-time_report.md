@@ -6,7 +6,7 @@ Labour force report for all part-time individuals
 This report displays the adjusted monthly change in labour force numbers
 for all part-time individuals from 2019-01 to 2022-04.
 
-![](output/all_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](all_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ### Table of labour force numbers and changes in the last 12 months
 

@@ -6,7 +6,7 @@ Labour force report for male part-time individuals
 This report displays the adjusted monthly change in labour force numbers
 for male part-time individuals from 2019-01 to 2022-04.
 
-![](output/male_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](male_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ### Table of labour force numbers and changes in the last 12 months
 

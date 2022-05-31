@@ -1,5 +1,5 @@
 # ABS labour force report automation   
-![](https://img.shields.io/badge/Language-R-blue)
+![](https://img.shields.io/badge/Language-R-blue) ![](https://img.shields.io/badge/Open%20dataset-ABS-brightgreen)
 
 This repository contains a minimal viable example of an R data visualisation and report generation workflow using ABS labour force open data.   
 
