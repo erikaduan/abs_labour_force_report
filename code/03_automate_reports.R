@@ -35,9 +35,9 @@ library("xfun")
 library("fs")
 
 # Load clean data --------------------------------------------------------------  
-labour_force <- read_csv(here("data",
-                              "clean_data",
-                              "labour_force_clean.csv"))    
+labour_force <- readr::read_csv(here("data",
+                                     "clean_data",
+                                     "labour_force_clean.csv"))    
 
 # Empty ~/output folder to recreate reports ------------------------------------
 fs::dir_delete(xfun::from_root("output"))
@@ -50,7 +50,8 @@ params_df <- expand.grid(unique(labour_force$sex), unique(labour_force$measure),
 
 # Input template report and parameters list to render Rmd reports 
 for (i in 1:nrow(params_df)) {
-  # Temporarily change wd to ~/code with xfun::in_dir() and render Rmd
+  # Temporarily change wd to ~/code with xfun::in_dir() and render Rmd inside
+  # Avoid inputting relative path names using here::here() with render()
   xfun::in_dir(
     "code", 
     rmarkdown::render(
@@ -65,10 +66,9 @@ for (i in 1:nrow(params_df)) {
 
 # Move output files from ~/code to ~/output
 # Extract all files which do not end in .R or .Rmd
-code_files <- grep("\\.R|(Rmd)$",
-                   fs::dir_ls(xfun::from_root("code")),
-                   invert = TRUE,
-                   value = TRUE)
+code_files <- fs::dir_ls(xfun::from_root("code"),
+                         regexp = "\\.R|(Rmd)$", 
+                         invert = TRUE)
 
 # Create location of output files
 output_files <- gsub("code/", "output/", code_files)

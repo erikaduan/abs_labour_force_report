@@ -31,6 +31,8 @@ data_url <- "https://api.data.abs.gov.au/data/ABS,LF,1.0.0/M2+M1.2+1+3.1599.20+3
 
 # Obtain data as tibble data frame ---------------------------------------------
 # Add updated_on column as a data ingestion time stamp  
+
+
 labour_force <- readSDMX(data_url) %>%
   as_tibble() 
 

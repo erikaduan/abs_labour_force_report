@@ -9,28 +9,6 @@ params:
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Load required packages -------------------------------------------------------
-# Input package names
-packages <- c("here",
-              "readr",
-              "stringr", 
-              "clock",
-              "dplyr",
-              "ggplot2",
-              "rmarkdown",
-              "knitr", 
-              "magrittr") 
-
-installed_packages <- packages %in% rownames(installed.packages())
-
-# Install new packages
-if (any(installed_packages == FALSE)) {
-  install.packages(packages[!installed_packages])
-}
-
-# Load new packages silently  
-invisible(lapply(packages, library, character.only = TRUE))
-
 # Load labour_force_clean dataset ----------------------------------------------
 labour_force <- read_csv(here("data",
                               "clean_data",
