@@ -11,7 +11,7 @@ width="500"></center>
 The contents of this repository have been created to support the [Automating R Markdown report generation - Part 2](https://github.com/erikaduan/r_tips/blob/master/tutorials/p-automating_rmd_reports/p-automating_rmd_reports_part_2.md) tutorial in my [`r_tips`](https://github.com/erikaduan/r_tips) repository.   
 
 ## Rmd tips  
-+ As referenced in [this GitHub issue](https://github.com/rstudio/rmarkdown/issues/2365), path handling by `rmarkdown::render()` is currently not ideal as `output_dir` argument creates an absolute path for rendered figures. This can be resolved by using `xfun::in_dir("code", ...)` to render inside `.\code` and then moving the outputs into `.\output`.    
++ As referenced in [this GitHub issue](https://github.com/rstudio/rmarkdown/issues/2365), path handling by `rmarkdown::render()` is currently not ideal as the `output_dir` argument creates an absolute path for rendered figures. This can be resolved by using `xfun::in_dir("code", ...)` to render inside `.\code` and then moving the outputs into `.\output`.    
 
 ## CI/CD automation tips  
 + Use `renv` to manage package version and commit your `renv.lock` file with your repository. The `renv` package will automatically create a second `.gitignore` file in `~/renv`, which prevents the private project library `~/renv/library` from being committed.  

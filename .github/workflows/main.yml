@@ -55,10 +55,13 @@ jobs:
           renv::restore()
       
       # Executes R scripts
-      - name: Extract and clean ABS labour force data 
-        run: Rscript code/01_extract_and_clean_data.R
+      - name: Extract data from ABS labour force data API 
+        run: Rscript code/01_extract_data.R
 
-      - name: Knit ABS labour force reports
+      - name: Clean raw labour force data
+        run: Rscript code/02_clean_data.R
+
+      - name: Render labour force reports
         run: Rscript code/03_automate_reports.R  
       
       # Commits newly rendered reports into the repository 
