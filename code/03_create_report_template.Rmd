@@ -10,15 +10,15 @@ params:
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Load labour_force_clean dataset ----------------------------------------------
-labour_force <- read_csv(here("data",
-                              "clean_data",
-                              "labour_force_clean.csv"))
+labour_force <- readr::read_csv(here::here("data",
+                                           "clean_data",
+                                           "labour_force_clean.csv"))
 ```
 
 
 ### Graph of labour force changes since 2019  
 
-This report displays the adjusted monthly change in labour force numbers for `r paste(params$sex, params$measure)` individuals from `r min(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")` to `r max(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")`.  
+This report displays the adjusted monthly change in labour force numbers for `r paste(params$sex, params$measure)` individuals from `r min(labour_force$time_period) |> stringr::str_extract("^[0-9]{4}-[0-9]{2}")` to `r max(labour_force$time_period) |> stringr::str_extract("^[0-9]{4}-[0-9]{2}")`.  
 
 ```{r, echo=FALSE}
 # Plot data --------------------------------------------------------------------
@@ -26,9 +26,9 @@ This report displays the adjusted monthly change in labour force numbers for `r 
 y_max <- max(labour_force$change_obs_value) 
 y_min <- min(labour_force$change_obs_value)   
 
-labour_force %>% 
+labour_force |>  
   filter(sex == params$sex, 
-         measure == params$measure) %>%
+         measure == params$measure) |> 
   ggplot(aes(x = time_period, 
              y = change_obs_value)) +
   geom_line() + 
@@ -54,25 +54,25 @@ labour_force %>%
 
 ### Table of labour force numbers and changes in the last 12 months  
 
-This table displays the adjusted labour force numbers and adjusted change in labour force numbers for `r paste(params$sex, params$measure)` individuals from `r Sys.Date() %>% add_months(-12) %>% str_extract("^[0-9]{4}-[0-9]{2}")` to `r max(labour_force$time_period) %>% str_extract("^[0-9]{4}-[0-9]{2}")`.   
+This table displays the adjusted labour force numbers and adjusted change in labour force numbers for `r paste(params$sex, params$measure)` individuals from `r Sys.Date() |>  clock::add_months(-12) |>  stringr::str_extract("^[0-9]{4}-[0-9]{2}")` to `r max(labour_force$time_period) |>  stringr::str_extract("^[0-9]{4}-[0-9]{2}")`.   
 
 ```{r, echo=FALSE}
 # Display table ----------------------------------------------------------------
 # Create filter to display only the last 12 months of records
-twelve_months_ago <- Sys.Date() %>% add_months(-12)
+twelve_months_ago <- Sys.Date() |> clock::add_months(-12)
 
 # Specify table style
-labour_force %>% 
+labour_force |>  
   filter(sex == params$sex, 
          measure == params$measure,
-         time_period >= twelve_months_ago) %>%
-  arrange(time_period) %>%
-  mutate(year = get_year(time_period),
-         month = get_month(time_period)) %>% 
-  select(-c(sex, measure, time_period, last_obs_value)) %>% 
-  relocate(year, month) %>% 
+         time_period >= twelve_months_ago) |> 
+  arrange(time_period) |> 
+  mutate(year = clock::get_year(time_period),
+         month = clock::get_month(time_period)) |>  
+  select(-c(sex, measure, time_period, last_obs_value)) |> 
+  relocate(year, month) |> 
   rename(number = obs_value,
-         change = change_obs_value) %>%
+         change = change_obs_value) |> 
   knitr::kable()
 ```
 

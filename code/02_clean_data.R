@@ -1,7 +1,6 @@
 # Load required packages -------------------------------------------------------  
-# Input package names
-packages <- c("here",
-              "readr",
+# The native pipe operator requires R version 4.1+ 
+packages <- c("readr",
               "stringr",
               "janitor",
               "rsdmx",
@@ -11,64 +10,42 @@ packages <- c("here",
 
 installed_packages <- packages %in% rownames(installed.packages())
 
-# Install new packages
 if (any(installed_packages == FALSE)) {
   install.packages(packages[!installed_packages])
 }
 
-# Load packages individually for detection by renv 
-library("here")
-library("readr")
-library("stringr")
-library("janitor")
-library("rsdmx")
-library("clock")
-library("dplyr")
-library("magrittr")
+# Load data/raw_data/labour_force_raw.csv --------------------------------------
+# This dataset will contain multiple values for an observation if a value has 
+# been retrospectively modified for a specific date.
+raw_data <- readr::read_csv("data/raw_data/labour_force_raw.csv")
 
-# Connect to Labour Force API --------------------------------------------------
-data_url <- "https://api.data.abs.gov.au/data/ABS,LF,1.0.0/M2+M1.2+1+3.1599.20+30.AUS.M?startPeriod=2019-01&dimensionAtObservation=AllDimensions"  
+# Convert column names into snake case -----------------------------------------
+clean_data <- janitor::clean_names(raw_data)
 
-# Obtain data as tibble data frame ---------------------------------------------
-# Add updated_on column as a data ingestion time stamp  
+# Extract one observation per time period, measure and sex --------------------- 
+clean_data <- clean_data |> 
+  dplyr::arrange(desc(time_period),
+                 desc(ingested_on)) |>  
+  dplyr::group_by(time_period, measure, sex) |> 
+  dplyr::filter(dplyr::row_number() == 1)
 
+# Clean measure and sex values to output report ready dataset ------------------  
+clean_data <- clean_data |> 
+  dplyr::mutate(measure = dplyr::case_when(measure == "M1" ~ "full-time",
+                                           measure == "M2" ~ "part-time"),
+                sex = dplyr::case_when(sex == "1" ~ "male",
+                                       sex == "2" ~ "female",
+                                       sex == "3" ~ "all"))
 
-labour_force <- readSDMX(data_url) %>%
-  as_tibble() 
+# Convert time_period into Date type and create a value change variable --------
+clean_data <- clean_data |>   
+  dplyr::group_by(measure, sex) |>    
+  dplyr::mutate(time_period = as.Date(paste0(time_period, "-01"), format = "%Y-%m-%d"),
+                last_obs_value = dplyr::lag(obs_value),
+                change_obs_value = dplyr::case_when(
+                  is.na(last_obs_value) ~ 0,
+                  TRUE ~ obs_value - last_obs_value)) |> 
+  dplyr::ungroup()
 
-# Save raw data ----------------------------------------------------------------
-write_csv(labour_force, here("data",
-                             "raw_data",
-                             "labour_force_raw.csv"))
-
-# Clean data to produce YAML parameter friendly dataset ------------------------  
-labour_force <- labour_force %>%
-  clean_names() %>%
-  filter (tsest == 20) %>% # Extract seasonally adjusted values  
-  select(time_period,
-         measure,
-         sex,
-         obs_value) 
-
-# Rename measure and sex as strings   
-labour_force <- labour_force %>% 
-  mutate(measure = case_when(measure == "M1" ~ "full-time",
-                             measure == "M2" ~ "part-time"),
-         sex = case_when(sex == "1" ~ "male",
-                         sex == "2" ~ "female",
-                         sex == "3" ~ "all"))
-
-# Convert time_period into a Date format and create a change variable 
-labour_force <- labour_force %>% 
-  group_by(measure, sex) %>% # Analyse for all subcategories of measure and sex  
-  mutate(time_period = as.Date(paste0(time_period, "-01"), format = "%Y-%m-%d"),
-         last_obs_value = lag(obs_value),
-         change_obs_value = case_when(
-           is.na(last_obs_value) ~ 0,
-           TRUE ~ obs_value - last_obs_value)) %>%
-  ungroup()
-
-# Save clean data --------------------------------------------------------------
-write_csv(labour_force, here("data",
-                             "clean_data",
-                             "labour_force_clean.csv"))
+# Save in data/clean_data as labour_force_clean.csv ----------------------------
+readr::write_csv(clean_data, "data/clean_data/labour_force_clean.csv")
