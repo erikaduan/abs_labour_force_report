@@ -18,7 +18,7 @@ if (any(installed_packages == FALSE)) {
   install.packages(packages[!installed_packages])
 }
 
-# Load packages required by Rmd template
+# Load packages required to render Rmd template
 library(ggplot2)
 library(dplyr)
 
@@ -41,7 +41,7 @@ for (i in 1:nrow(params_df)) {
   xfun::in_dir(
     "code", 
     rmarkdown::render(
-      input = "03_create_report_template.Rmd",
+      input = "labour_market_report_template.Rmd",
       output_format = rmarkdown::github_document(html_preview = FALSE), 
       params = list(sex = params_df[i, 1],
                     measure = params_df[i, 2]),

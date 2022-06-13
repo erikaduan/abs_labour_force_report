@@ -3,20 +3,26 @@
 
 This repository contains a minimal viable example of an R data visualisation and report generation workflow using ABS labour force open data.   
 
+![](project_workflow.svg)
+
 The contents of this repository have been created to support the [Automating R Markdown report generation - Part 2](https://github.com/erikaduan/r_tips/blob/master/tutorials/p-automating_rmd_reports/p-automating_rmd_reports_part_2.md) tutorial in my [`r_tips`](https://github.com/erikaduan/r_tips) repository.   
 
 ## Rmd tips  
-+ Referencing [this GitHub issue](https://github.com/rstudio/rmarkdown/issues/2365), path handling by `rmarkdown::render()` is currently not ideal and the use of `output_dir` will create an absolute path for rendered figures. This can be resolved by using `xfun::from_root()` to render inside a relative file path and then using the `fs` package to move rendered outputs into `~\output`.    
++ As referenced in [this GitHub issue](https://github.com/rstudio/rmarkdown/issues/2365), path handling by `rmarkdown::render()` is currently not ideal as `output_dir` argument creates an absolute path for rendered figures. This can be resolved by using `xfun::in_dir("code", ...)` to render inside `.\code` and then moving the outputs into `.\output`.    
 
 ## CI/CD automation tips  
 + Use `renv` to manage package version and commit your `renv.lock` file with your repository. The `renv` package will automatically create a second `.gitignore` file in `~/renv`, which prevents the private project library `~/renv/library` from being committed.  
 + Load the minimum set of packages required i.e. load `dplyr` instead of `tidyverse` if you are just performing simple data transformations and avoid using `pacman::p_load()`.  
-+ The package `renv` uses static analysis to determine which packages are used i.e. by scanning your code for calls to `library()` or `require()`. Due to this functionality, avoid mapping package loading with `lapply(packages, library, character.only = TRUE)` as described [here](https://statsandr.com/blog/an-efficient-way-to-install-and-load-r-packages/#more-efficient-way).    
++ The package `renv` uses static analysis to determine which packages are used i.e. by scanning your code for calls to `library(pkg)`, `require(pkg)` or `pkg::`. Due to this functionality, avoid mapping package loading with `lapply(packages, library, character.only = TRUE)` as described [here](https://statsandr.com/blog/an-efficient-way-to-install-and-load-r-packages/#more-efficient-way).    
 
     ```
     # Recommended due to renv static analysis approach 
     library("here")  
     library("readr")  
+
+    # Also recommmended
+    here::here(...)
+    readr::read_csv(...)
     
     # Not recommended 
     packages <- c("here", "readr")
@@ -68,10 +74,10 @@ The contents of this repository have been created to support the [Automating R M
 
     ```
       # Execute R scripts
-      - name: Extract and clean ABS labour force data 
-        run: Rscript code/01_extract_and_clean_data.R
+      - name: Extract data from ABS labour force data API
+        run: Rscript code/01_extract_data.R
 
-      - name: Knit ABS labour force reports
-        run: Rscript code/03_automate_reports.R  
+      - name: Clean raw labour force data
+        run: Rscript code/02_clean_data.R  
     ```  
 
