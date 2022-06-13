@@ -3,7 +3,10 @@
 
 This repository contains a minimal viable example of an R data visualisation and report generation workflow using ABS labour force open data.   
 
-![](project_workflow.svg)
+<p align="center">  
+<img src="https://github.com/erikaduan/abs_labour_force_report/blob/main/project_workflow.svg"
+width="500"></center>  
+</p>  
 
 The contents of this repository have been created to support the [Automating R Markdown report generation - Part 2](https://github.com/erikaduan/r_tips/blob/master/tutorials/p-automating_rmd_reports/p-automating_rmd_reports_part_2.md) tutorial in my [`r_tips`](https://github.com/erikaduan/r_tips) repository.   
 
@@ -20,7 +23,7 @@ The contents of this repository have been created to support the [Automating R M
     library("here")  
     library("readr")  
 
-    # Also recommmended
+    # Also recommmended for extra code reproducibility
     here::here(...)
     readr::read_csv(...)
     
@@ -80,4 +83,3 @@ The contents of this repository have been created to support the [Automating R M
       - name: Clean raw labour force data
         run: Rscript code/02_clean_data.R  
     ```  
-
