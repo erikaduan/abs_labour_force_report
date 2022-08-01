@@ -4,7 +4,7 @@ Labour force report for female full-time individuals
 ### Graph of labour force changes since 2019
 
 This report displays the adjusted monthly change in labour force numbers
-for female full-time individuals from 2019-01 to 2022-05.
+for female full-time individuals from 2019-01 to 2022-06.
 
 ![](female_full-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -12,11 +12,10 @@ for female full-time individuals from 2019-01 to 2022-05.
 
 This table displays the adjusted labour force numbers and adjusted
 change in labour force numbers for female full-time individuals from
-2021-07 to 2022-05.
+2021-08 to 2022-06.
 
 | year | month |   number | ingested_on |     change |
 |-----:|------:|---------:|:------------|-----------:|
-| 2021 |     7 | 3427.801 | 2022-07-01  |  16.084754 |
 | 2021 |     8 | 3411.717 | 2022-07-01  | -31.859309 |
 | 2021 |     9 | 3443.576 | 2022-07-01  |  13.018261 |
 | 2021 |    10 | 3430.558 | 2022-07-01  | -48.804783 |
@@ -26,9 +25,10 @@ change in labour force numbers for female full-time individuals from
 | 2022 |     2 | 3579.586 | 2022-07-01  |  -9.842429 |
 | 2022 |     3 | 3589.429 | 2022-07-01  | -35.161322 |
 | 2022 |     4 | 3624.590 | 2022-07-01  | -34.182970 |
-| 2022 |     5 | 3658.773 | 2022-07-01  |   0.000000 |
+| 2022 |     5 | 3658.773 | 2022-07-01  | -19.797701 |
+| 2022 |     6 | 3678.571 | 2022-08-01  |   0.000000 |
 
 ------------------------------------------------------------------------
 
-Report last updated on 2022-07-01 from the [ABS labour force
+Report last updated on 2022-08-01 from the [ABS labour force
 dataset](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)

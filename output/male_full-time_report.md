@@ -4,7 +4,7 @@ Labour force report for male full-time individuals
 ### Graph of labour force changes since 2019
 
 This report displays the adjusted monthly change in labour force numbers
-for male full-time individuals from 2019-01 to 2022-05.
+for male full-time individuals from 2019-01 to 2022-06.
 
 ![](male_full-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -12,11 +12,10 @@ for male full-time individuals from 2019-01 to 2022-05.
 
 This table displays the adjusted labour force numbers and adjusted
 change in labour force numbers for male full-time individuals from
-2021-07 to 2022-05.
+2021-08 to 2022-06.
 
 | year | month |   number | ingested_on |     change |
 |-----:|------:|---------:|:------------|-----------:|
-| 2021 |     7 | 5588.712 | 2022-07-01  |  47.152836 |
 | 2021 |     8 | 5541.559 | 2022-07-01  |   7.446501 |
 | 2021 |     9 | 5534.113 | 2022-07-01  |  13.749250 |
 | 2021 |    10 | 5520.364 | 2022-07-01  | -89.575977 |
@@ -26,9 +25,10 @@ change in labour force numbers for male full-time individuals from
 | 2022 |     2 | 5678.806 | 2022-07-01  | -12.447213 |
 | 2022 |     3 | 5691.253 | 2022-07-01  | -58.189987 |
 | 2022 |     4 | 5749.443 | 2022-07-01  | -35.168206 |
-| 2022 |     5 | 5784.611 | 2022-07-01  |   0.000000 |
+| 2022 |     5 | 5784.611 | 2022-07-01  | -33.134661 |
+| 2022 |     6 | 5817.746 | 2022-08-01  |   0.000000 |
 
 ------------------------------------------------------------------------
 
-Report last updated on 2022-07-01 from the [ABS labour force
+Report last updated on 2022-08-01 from the [ABS labour force
 dataset](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)
