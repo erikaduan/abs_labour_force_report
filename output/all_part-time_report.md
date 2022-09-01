@@ -4,7 +4,7 @@ Labour force report for all part-time individuals
 ### Graph of labour force changes since 2019
 
 This report displays the adjusted monthly change in labour force numbers
-for all part-time individuals from 2019-01 to 2022-06.
+for all part-time individuals from 2019-01 to 2022-07.
 
 ![](all_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -12,11 +12,10 @@ for all part-time individuals from 2019-01 to 2022-06.
 
 This table displays the adjusted labour force numbers and adjusted
 change in labour force numbers for all part-time individuals from
-2021-08 to 2022-06.
+2021-09 to 2022-07.
 
 | year | month |   number | ingested_on |      change |
 |-----:|------:|---------:|:------------|------------:|
-| 2021 |     8 | 4068.513 | 2022-07-01  |  162.654574 |
 | 2021 |     9 | 3905.859 | 2022-07-01  |    7.489249 |
 | 2021 |    10 | 3898.370 | 2022-07-01  | -245.608335 |
 | 2021 |    11 | 4143.978 | 2022-07-01  |  -22.557132 |
@@ -26,9 +25,10 @@ change in labour force numbers for all part-time individuals from
 | 2022 |     3 | 4165.152 | 2022-07-01  |   88.918392 |
 | 2022 |     4 | 4076.234 | 2022-07-01  |    8.730387 |
 | 2022 |     5 | 4067.503 | 2022-07-01  |  -35.489775 |
-| 2022 |     6 | 4102.993 | 2022-08-01  |    0.000000 |
+| 2022 |     6 | 4102.993 | 2022-08-01  |  -45.977961 |
+| 2022 |     7 | 4148.971 | 2022-09-01  |    0.000000 |
 
 ------------------------------------------------------------------------
 
-Report last updated on 2022-08-01 from the [ABS labour force
+Report last updated on 2022-09-01 from the [ABS labour force
 dataset](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)

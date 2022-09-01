@@ -4,7 +4,7 @@ Labour force report for female part-time individuals
 ### Graph of labour force changes since 2019
 
 This report displays the adjusted monthly change in labour force numbers
-for female part-time individuals from 2019-01 to 2022-06.
+for female part-time individuals from 2019-01 to 2022-07.
 
 ![](female_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -12,11 +12,10 @@ for female part-time individuals from 2019-01 to 2022-06.
 
 This table displays the adjusted labour force numbers and adjusted
 change in labour force numbers for female part-time individuals from
-2021-08 to 2022-06.
+2021-09 to 2022-07.
 
 | year | month |   number | ingested_on |      change |
 |-----:|------:|---------:|:------------|------------:|
-| 2021 |     8 | 2757.136 | 2022-07-01  |  112.565410 |
 | 2021 |     9 | 2644.571 | 2022-07-01  |   15.520122 |
 | 2021 |    10 | 2629.051 | 2022-07-01  | -177.287360 |
 | 2021 |    11 | 2806.338 | 2022-07-01  |  -13.901063 |
@@ -26,9 +25,10 @@ change in labour force numbers for female part-time individuals from
 | 2022 |     3 | 2847.032 | 2022-07-01  |   44.461399 |
 | 2022 |     4 | 2802.570 | 2022-07-01  |   28.012297 |
 | 2022 |     5 | 2774.558 | 2022-07-01  |  -35.922740 |
-| 2022 |     6 | 2810.481 | 2022-08-01  |    0.000000 |
+| 2022 |     6 | 2810.481 | 2022-08-01  |  -21.446513 |
+| 2022 |     7 | 2831.927 | 2022-09-01  |    0.000000 |
 
 ------------------------------------------------------------------------
 
-Report last updated on 2022-08-01 from the [ABS labour force
+Report last updated on 2022-09-01 from the [ABS labour force
 dataset](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)
