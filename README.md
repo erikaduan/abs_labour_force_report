@@ -32,7 +32,30 @@ The contents of this repository have been created to support the [Automating R M
     invisible(lapply(packages, library, character.only = TRUE))
     ```
 
-+ The template CI/CD code for using `renv` is found [here](https://rstudio.github.io/renv/articles/ci.html), based on a GitHub actions `renv` cache issue recorded [here](https://github.com/r-lib/actions/issues/79).   
++ The `pandoc` package is not bundled with the `rmarkdown` package (`pandoc` is provided by RStudio) so the correct version of `pandoc` needs to be manually specified in the YAML pipeline.    
+
+    ```
+    steps:
+      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Sets up pandoc which is required for knitting HTML reports  
+      - uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '2.17.1' 
+    ```
+
++ A virtual R environment needs to first be set up.   
+
+  ```   
+  steps:
+    - name: Setup R version 4.1.2
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: '4.1.2' 
+  ```    
+
++ The template CI/CD code for using `renv` to install R package dependencies is found [here](https://rstudio.github.io/renv/articles/ci.html), based on a GitHub actions `renv` cache issue recorded [here](https://github.com/r-lib/actions/issues/79).   
 
     ```
     env:
@@ -59,18 +82,6 @@ The contents of this repository have been created to support the [Automating R M
           renv::restore()
     ```
 
-+ The `pandoc` package is not bundled with the `rmarkdown` package (`pandoc` is provided by RStudio) so the correct version of `pandoc` needs to be manually specified in the YAML pipeline.    
-
-    ```
-    steps:
-      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Sets up pandoc which is required for knitting HTML reports  
-      - uses: r-lib/actions/setup-pandoc@v2
-        with:
-          pandoc-version: '2.17.1' 
-    ```
 + Write scripts that are self-contained. This means using one script to separately load all R libraries should be avoided, to minimise errors in case one job cannot access the outputs of another job.  
 
 + I personally prefer running scripts as separate steps, for better job progress monitoring.  
