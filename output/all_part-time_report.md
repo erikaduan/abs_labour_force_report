@@ -4,7 +4,7 @@ Labour force report for all part-time individuals
 ### Graph of labour force changes since 2019
 
 This report displays the adjusted monthly change in labour force numbers
-for all part-time individuals from 2019-01 to 2023-04.
+for all part-time individuals from 2019-01 to 2023-05.
 
 ![](all_part-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -12,23 +12,23 @@ for all part-time individuals from 2019-01 to 2023-04.
 
 This table displays the adjusted labour force numbers and adjusted
 change in labour force numbers for all part-time individuals from
-2022-06 to 2023-04.
+2022-07 to 2023-05.
 
 | year | month |   number | ingested_on |     change |
 |-----:|------:|---------:|:------------|-----------:|
-| 2022 |     6 | 4142.887 | 2023-06-01  | -36.645690 |
-| 2022 |     7 | 4179.533 | 2023-06-01  |  12.822551 |
-| 2022 |     8 | 4166.710 | 2023-06-01  |   9.003518 |
-| 2022 |     9 | 4157.707 | 2023-06-01  |  12.018298 |
-| 2022 |    10 | 4145.688 | 2023-06-01  | -24.817044 |
-| 2022 |    11 | 4170.505 | 2023-06-01  |  33.860337 |
-| 2022 |    12 | 4136.645 | 2023-06-01  | -33.415367 |
-| 2023 |     1 | 4170.061 | 2023-06-01  |  15.962274 |
-| 2023 |     2 | 4154.098 | 2023-06-01  |  21.350181 |
-| 2023 |     3 | 4132.748 | 2023-06-01  | -22.834367 |
-| 2023 |     4 | 4155.582 | 2023-06-01  |   0.000000 |
+| 2022 |     7 | 4182.776 | 2023-07-01  |  12.782039 |
+| 2022 |     8 | 4169.994 | 2023-07-01  |   7.595402 |
+| 2022 |     9 | 4162.399 | 2023-07-01  |  12.052232 |
+| 2022 |    10 | 4150.347 | 2023-07-01  | -24.600141 |
+| 2022 |    11 | 4174.947 | 2023-07-01  |  33.103615 |
+| 2022 |    12 | 4141.843 | 2023-07-01  | -37.313709 |
+| 2023 |     1 | 4179.157 | 2023-07-01  |  13.390545 |
+| 2023 |     2 | 4165.766 | 2023-07-01  |  19.082636 |
+| 2023 |     3 | 4146.684 | 2023-07-01  | -24.627605 |
+| 2023 |     4 | 4171.311 | 2023-07-01  | -14.256159 |
+| 2023 |     5 | 4185.568 | 2023-07-01  |   0.000000 |
 
 ------------------------------------------------------------------------
 
-Report last updated on 2023-06-01 from the [ABS labour force
+Report last updated on 2023-07-01 from the [ABS labour force
 dataset](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)
