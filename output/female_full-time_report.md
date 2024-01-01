@@ -4,7 +4,7 @@ Labour force report for female full-time individuals
 ### Graph of labour force changes since 2019
 
 This report displays the adjusted monthly change in labour force numbers
-for female full-time individuals from 2019-01 to 2023-10.
+for female full-time individuals from 2019-01 to 2023-11.
 
 ![](female_full-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -12,23 +12,23 @@ for female full-time individuals from 2019-01 to 2023-10.
 
 This table displays the adjusted labour force numbers and adjusted
 change in labour force numbers for female full-time individuals from
-2022-12 to 2023-10.
+2023-01 to 2023-11.
 
 | year | month |   number | ingested_on |     change |
 |-----:|------:|---------:|:------------|-----------:|
-| 2022 |    12 | 3748.280 | 2023-12-01  |  -3.578417 |
-| 2023 |     1 | 3751.859 | 2023-12-01  | -26.836715 |
-| 2023 |     2 | 3778.695 | 2023-12-01  | -44.091039 |
-| 2023 |     3 | 3822.786 | 2023-12-01  | -20.290854 |
-| 2023 |     4 | 3843.077 | 2023-12-01  | -17.216373 |
-| 2023 |     5 | 3860.294 | 2023-12-01  |  -2.933225 |
-| 2023 |     6 | 3863.227 | 2023-12-01  |  22.074176 |
-| 2023 |     7 | 3841.153 | 2023-12-01  |  11.713095 |
-| 2023 |     8 | 3829.440 | 2023-12-01  | -11.338576 |
-| 2023 |     9 | 3840.778 | 2023-12-01  | -26.206332 |
-| 2023 |    10 | 3866.985 | 2023-12-01  |   0.000000 |
+| 2023 |     1 | 3759.798 | 2024-01-01  | -27.778767 |
+| 2023 |     2 | 3787.577 | 2024-01-01  | -45.218979 |
+| 2023 |     3 | 3832.796 | 2024-01-01  | -20.816621 |
+| 2023 |     4 | 3853.613 | 2024-01-01  | -19.910445 |
+| 2023 |     5 | 3873.523 | 2024-01-01  |  -4.217782 |
+| 2023 |     6 | 3877.741 | 2024-01-01  |  21.640712 |
+| 2023 |     7 | 3856.100 | 2024-01-01  |  11.541685 |
+| 2023 |     8 | 3844.558 | 2024-01-01  | -10.874968 |
+| 2023 |     9 | 3855.433 | 2024-01-01  | -25.150139 |
+| 2023 |    10 | 3880.583 | 2024-01-01  |  -5.501144 |
+| 2023 |    11 | 3886.085 | 2024-01-01  |   0.000000 |
 
 ------------------------------------------------------------------------
 
-Report last updated on 2023-12-01 from the [ABS labour force
+Report last updated on 2024-01-01 from the [ABS labour force
 dataset](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)
