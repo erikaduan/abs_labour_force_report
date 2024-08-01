@@ -4,7 +4,7 @@ Labour force report for male full-time individuals
 ### Graph of labour force changes since 2019
 
 This report displays the adjusted monthly change in labour force numbers
-for male full-time individuals from 2019-01 to 2024-05.
+for male full-time individuals from 2019-01 to 2024-06.
 
 ![](male_full-time_report_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
@@ -12,23 +12,23 @@ for male full-time individuals from 2019-01 to 2024-05.
 
 This table displays the adjusted labour force numbers and adjusted
 change in labour force numbers for male full-time individuals from
-2023-07 to 2024-05.
+2023-08 to 2024-06.
 
-| year | month |   number | ingested_on |      change |
-|-----:|------:|---------:|:------------|------------:|
-| 2023 |     7 | 5953.701 | 2024-07-01  | -18.5280704 |
-| 2023 |     8 | 5972.229 | 2024-07-01  |  46.0889262 |
-| 2023 |     9 | 5926.140 | 2024-07-01  |   1.6670318 |
-| 2023 |    10 | 5924.473 | 2024-07-01  | -38.0792651 |
-| 2023 |    11 | 5962.552 | 2024-07-01  |  29.9881479 |
-| 2023 |    12 | 5932.564 | 2024-07-01  |  12.0582890 |
-| 2024 |     1 | 5920.506 | 2024-07-01  | -34.5942800 |
-| 2024 |     2 | 5955.100 | 2024-07-01  | -23.0483237 |
-| 2024 |     3 | 5978.148 | 2024-07-01  |   0.8883911 |
-| 2024 |     4 | 5977.260 | 2024-07-01  | -45.1623145 |
-| 2024 |     5 | 6022.422 | 2024-07-01  |   0.0000000 |
+| year | month |   number | ingested_on |     change |
+|-----:|------:|---------:|:------------|-----------:|
+| 2023 |     8 | 5971.737 | 2024-08-01  |  45.551778 |
+| 2023 |     9 | 5926.185 | 2024-08-01  |   1.854685 |
+| 2023 |    10 | 5924.331 | 2024-08-01  | -38.764071 |
+| 2023 |    11 | 5963.095 | 2024-08-01  |  30.211711 |
+| 2023 |    12 | 5932.883 | 2024-08-01  |  11.843916 |
+| 2024 |     1 | 5921.039 | 2024-08-01  | -34.791515 |
+| 2024 |     2 | 5955.830 | 2024-08-01  | -23.113208 |
+| 2024 |     3 | 5978.944 | 2024-08-01  |   1.123859 |
+| 2024 |     4 | 5977.820 | 2024-08-01  | -44.838000 |
+| 2024 |     5 | 6022.658 | 2024-08-01  | -15.080761 |
+| 2024 |     6 | 6037.739 | 2024-08-01  |   0.000000 |
 
 ------------------------------------------------------------------------
 
-Report last updated on 2024-07-01 from the [ABS labour force
+Report last updated on 2024-08-01 from the [ABS labour force
 dataset](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)
