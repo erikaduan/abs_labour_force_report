@@ -11,18 +11,10 @@ on:
 jobs:
   run_report:
     runs-on: ubuntu-latest
-    
-    # Retrieves secrets from GitHub and set renv root path
-    env:
-        apikey: ${{ secrets.APIKEY }}
-        apisecretkey: ${{ secrets.APISECRETKEY }}
-        access_token: ${{ secrets.ACCESS_TOKEN }}
-        access_token_secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
-        RENV_PATHS_ROOT: ~/.local/share/renv
 
     steps:
       # Checks out your repository under $GITHUB_WORKSPACE so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       
       # Sets up pandoc which is required for knitting HTML reports  
       - uses: r-lib/actions/setup-pandoc@v2
@@ -35,24 +27,15 @@ jobs:
         with:
           r-version: '4.1.2'
       
-      # Set up R packages cache for workflow reruns  
+      # Set up R packages cache for workflow reruns and restores cache 
+      # automatically using renv::restore()   
       - name: Cache R packages
-        uses: actions/cache@v1
+        uses: r-lib/actions/setup-renv@v2
         with:
-           path: ${{ env.RENV_PATHS_ROOT }}
-           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-           restore-keys: |-
-              ${{ runner.os }}-renv-
+          cache: true
 
       # Install cURL to transfer data to virtual environment
       - run: sudo apt-get install -y --no-install-recommends libcurl4-openssl-dev
-
-      # Install renv and project specific R packages
-      - name: Restore R packages
-        shell: Rscript {0}
-        run: |
-          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
       
       # Executes R scripts
       - name: Extract data from ABS labour force data API 

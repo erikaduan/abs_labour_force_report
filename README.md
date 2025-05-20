@@ -10,6 +10,13 @@ width="500"></center>
 
 The contents of this repository have been created to support the [Automating R Markdown report generation - Part 2](https://github.com/erikaduan/r_tips/blob/master/tutorials/p-automating_rmd_reports/p-automating_rmd_reports_part_2.md) tutorial in my [`r_tips`](https://github.com/erikaduan/r_tips) repository.   
 
+## Updates  
+
++ [Deprecation of `actions/cache@v1`](https://github.com/actions/cache/discussions/1510`) in March 2025. Initially switched to using `actions/cache@v4` but discovered [r-lib/actions/setup-renv@v2](https://github.com/r-lib/actions/tree/v2-branch/setup-renv), which installs required R packages and caches them automatically using `renv`.   
++ Using `r-lib/actions/setup-renv@v2` allowed the custom step `Restore R packages` which manually runs `renv::restore()` in Rscript be deleted.    
++ Using `r-lib/actions/setup-renv@v2` allowed the custom environment variables in `# Retrieves secrets from GitHub and set renv root path` to be deleted.   
++ Updated from `actions/checkout@v2` to [`actions/checkout@v4`](https://github.com/actions/checkout).     
+
 ## Rmd tips  
 + As referenced in [this GitHub issue](https://github.com/rstudio/rmarkdown/issues/2365), path handling by `rmarkdown::render()` is currently not ideal as the `output_dir` argument creates an absolute path for rendered figures. This can be resolved by using `xfun::in_dir("code", ...)` to render inside `.\code` and then moving the outputs into `.\output`.    
 
