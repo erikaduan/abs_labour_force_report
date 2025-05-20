@@ -11,8 +11,6 @@ on:
 jobs:
   run_report:
     runs-on: ubuntu-latest
-    #env:
-      #GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       # Checks out your repository under $GITHUB_WORKSPACE so your job can access it
@@ -35,7 +33,7 @@ jobs:
       
       # Set up R packages cache for workflow reruns and restores cache 
       # automatically using renv::restore()   
-      - name: Cache R packages
+      - name: Install and cache R packages
         uses: r-lib/actions/setup-renv@v2
       
       # Executes R scripts

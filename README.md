@@ -12,9 +12,9 @@ The contents of this repository have been created to support the [Automating R M
 
 ## Updates  
 
-+ **[May 2025]** [Deprecation of `actions/cache@v1`](https://github.com/actions/cache/discussions/1510`) in March 2025. Initially switched to using `actions/cache@v4` but discovered [r-lib/actions/setup-renv@v2](https://github.com/r-lib/actions/tree/v2-branch/setup-renv), which installs required R packages and caches them automatically using `renv`.   
-+ **[May 2025]** Using `r-lib/actions/setup-renv@v2` allowed the previously custom step `Restore R packages` which manually runs `renv::restore()` in Rscript be deleted.    
-+ **[May 2025]** Using `r-lib/actions/setup-renv@v2` also allowed the custom environment variables in `# Retrieves secrets from GitHub and set renv root path` to be deleted. I experimented with retaining `env: GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}`.       
++ **[May 2025]** [Deprecation of `actions/cache@v1`](https://github.com/actions/cache/discussions/1510`) in March 2025. Initially switched to using `actions/cache@v4` but then discovered [r-lib/actions/setup-renv@v2](https://github.com/r-lib/actions/tree/v2-branch/setup-renv), which installs required R packages from the `renv.lock` file and caches them automatically.   
++ **[May 2025]** Using `r-lib/actions/setup-renv@v2` rendered the previously custom step `Restore R packages` redundant. This step manually ran `renv::restore()` in Rscript.       
++ **[May 2025]** Using `r-lib/actions/setup-renv@v2` rendered the previously custom environment variables in `# Retrieves secrets from GitHub and set renv root path` redundant. I experimented with retaining `env: GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}` but this had no effect on the R package cache (as my Github actions workflow does not deploy automatic code committing or pulling).                   
 + **[May 2025]** Renamed and moved the step `Install libcurl from libcurl4-openssl-dev` to be run before `r-lib/actions/setup-renv@v2` as `libcurl` is a dependency for the R package `curl`.     
 + **[May 2025]** Updated from `actions/checkout@v2` to [`actions/checkout@v4`](https://github.com/actions/checkout).      
 
@@ -39,14 +39,18 @@ The contents of this repository have been created to support the [Automating R M
     packages <- c("here", "readr")
     invisible(lapply(packages, library, character.only = TRUE))
     ```
++ The first requirement for our Github actions workflow is to check a copy of our Github repository into our temporary virtual environment. Under the hood, git must then be configured to trust this temporary repository as being safe.     
+
+  ```
+  steps:
+      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+  ```
 
 + The `pandoc` package is not bundled with the `rmarkdown` package (`pandoc` is provided by RStudio) so the correct version of `pandoc` needs to be manually specified in the YAML pipeline.    
 
     ```
     steps:
-      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
       # Sets up pandoc which is required for knitting HTML reports  
       - uses: r-lib/actions/setup-pandoc@v2
         with:
@@ -63,38 +67,28 @@ The contents of this repository have been created to support the [Automating R M
         r-version: '4.1.2' 
   ```    
 
-+ The template CI/CD code for using `renv` to install R package dependencies is found [here](https://rstudio.github.io/renv/articles/ci.html), based on a GitHub actions `renv` cache issue recorded [here](https://github.com/r-lib/actions/issues/79).   
++ The Ubuntu `libcurl` package is a dependency for the R package `curl` and needs to be installed before R packages are installed and cached.  
 
-    ```
-    env:
-        RENV_PATHS_ROOT: ~/.local/share/renv
-    
-    steps:
-      # Set up R packages cache for workflow reruns 
-      - name: Cache R packages
-        uses: actions/cache@v1
-        with:
-           path: ${{ env.RENV_PATHS_ROOT }}
-           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-           restore-keys: |-
-              ${{ runner.os }}-renv-
+  ```
+  steps:  
+    - name: Install libcurl from libcurl4-openssl-dev 
+      run: sudo apt-get install -y --no-install-recommends libcurl4-openssl-dev
+  ```
 
-      # Install cURL to transfer data to virtual environment
-      - run: sudo apt-get install -y --no-install-recommends libcurl4-openssl-dev
++ The simplest method to automatically install R packages and configure them to use the Github cache is to use the action `r-lib/actions/setup-renv@v2` as described [here](https://rstudio.github.io/renv/articles/ci.html). There is an alternate method which uses `r-lib/actions/setup-r-dependencies@v2`. This method does not require `renv` and is useful for R package developers following CRAN package development requirements. An example can be found [here](https://github.com/jdjohn215/milwaukee-weather/blob/main/.github/workflows/UpdateGraphs.yml).       
 
-      # Install renv and project specific R packages 
-      - name: Restore R packages
-        shell: Rscript {0}
-        run: |
-          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
-          renv::restore()
-    ```
+  ```
+  steps:  
+    - name: Install and cache R packages
+      uses: r-lib/actions/setup-renv@v2
+  ```
 
 + Write scripts that are self-contained. This means using one script to separately load all R libraries should be avoided, to minimise errors in case one job cannot access the outputs of another job.  
 
 + I personally prefer running scripts as separate steps, for better job progress monitoring.  
 
     ```
+    steps:  
       # Execute R scripts
       - name: Extract data from ABS labour force data API
         run: Rscript code/01_extract_data.R
