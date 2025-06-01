@@ -12,7 +12,7 @@ for female part-time individuals from 2019-01 to 2025-04.
 
 This table displays the adjusted labour force numbers and adjusted
 change in labour force numbers for female part-time individuals from
-2024-05 to 2025-04.
+2024-06 to 2025-04.
 
 | year | month |   number | ingested_on |      change |
 |-----:|------:|---------:|:------------|------------:|
@@ -30,5 +30,5 @@ change in labour force numbers for female part-time individuals from
 
 ------------------------------------------------------------------------
 
-Report last updated on 2025-05-20 from the [ABS labour force
+Report last updated on 2025-06-01 from the [ABS labour force
 dataset](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release)
